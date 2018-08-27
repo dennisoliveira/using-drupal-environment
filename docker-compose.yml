@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: dennisoliveira/drupal7-book
-    container_name: drupal7-book-web
+    image: dennisoliveira/using-drupal7-book
+    container_name: using-drupal7-web
     tty: true
     volumes:
       - ./www:/var/www
@@ -17,7 +17,7 @@ services:
 
   db:
     image: mysql:5.5.40
-    container_name: drupal7-book-db
+    container_name: using-drupal7-db
     volumes:
       - ./db:/var/lib/mysql
     environment:

@@ -1,0 +1,8 @@
+chdir /home/blah/drupal
+find . -type d | xargs chmod 755    // make all directories 755 everywhere under Drupal
+find . -type f | xargs chmod 644    // make all files 644 everywhere under Drupal
+
+chmod 777 files                     // assuming the uploaded files are in this subdirectory
+chdir files
+find . -type d | xargs chmod 777    // some modules may have subdirectories for images etc
+find . -type f | xargs chmod 666    // files now owned by you - modules may need to overwrite them

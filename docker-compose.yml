@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dennisoliveira/drupal7-book
+    container_name: drupal7-book-web
+    tty: true
+    volumes:
+      - ./www:/var/www
+      - ./config/default:/etc/apache2/sites-available/default
+    networks:
+      default:
+        ipv4_address: ${WEB_IP}
+
+  db:
+    image: mysql:5.5.40
+    container_name: drupal7-book-db
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=drupal
+    networks:
+      default:
+        ipv4_address: ${MYSQL_IP}
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: ${NETWORK_CONFIG_SUBNET}
